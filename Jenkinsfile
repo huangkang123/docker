@@ -3,24 +3,24 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh '''echo \'This is a build step\' 
-								
-echo \'docker build begin\''''
+        echo 'docker build begin'
+        sh 'docker build -t nginx-redis .'
       }
     }
 
     stage('tag') {
       steps {
-        sh '''echo \'This is a test step\'
-docker tag nginx:latest 172.16.0.6/library/nginx:111'''
+        sh '''
+docker tag nginx-redis:latest 172.16.0.6/library/nginx:999'''
+        sh 'This is a tag step'
       }
     }
 
     stage('push') {
       steps {
-        sh '''echo \'This is a deploy step\'   
-docker login 172.16.0.6	
-docker push 172.16.0.6/library/nginx:111	'''
+        sh '''docker login 172.16.0.6	
+docker push 172.16.0.6/library/nginx:999	'''
+        echo 'This is a deploy step\''
       }
     }
 
