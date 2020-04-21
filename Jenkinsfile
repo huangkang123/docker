@@ -12,7 +12,7 @@ pipeline {
       steps {
         sh '''
 docker tag nginx-redis:latest 172.16.0.6/library/nginx:999'''
-        sh 'This is a tag step'
+        echo 'This is tga setup'
       }
     }
 
